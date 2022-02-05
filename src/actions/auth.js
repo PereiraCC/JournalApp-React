@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2'
+
 import { googleAuthProvider, 
     getAuth, 
     signInWithPopup, 
@@ -22,8 +24,9 @@ export const startLoginEmailPassword = (email, password) => {
                 dispatch( finishLoading() );
             })
             .catch( e => {
-                dispatch( finishLoading() );
                 console.log(e);
+                dispatch( finishLoading() );
+                Swal.fire( 'Error', 'User not found, wrong email or password'  , 'error' )
             });      
     }
 }
@@ -45,6 +48,7 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
             })
             .catch( e => {
                 console.log(e);
+                Swal.fire( 'Error', 'The data of registration is invalid' , 'error' )
             })
     }
 
