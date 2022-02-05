@@ -1,5 +1,4 @@
-import { getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword} from 'firebase/auth';
-import { googleAuthProvider } from '../firebase/firebase-config';
+import { googleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from '../firebase/firebase-config';
 import { types } from '../types/types';
 import { finishLoading, startLoading } from './ui';
 
