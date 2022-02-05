@@ -10,7 +10,8 @@ import { GoogleAuthProvider,
          signInWithPopup,
          createUserWithEmailAndPassword, 
          updateProfile, 
-         signInWithEmailAndPassword
+         signInWithEmailAndPassword,
+         signOut
 } from 'firebase/auth';
 
 
@@ -43,5 +44,6 @@ export {
     signInWithEmailAndPassword,
     signInWithPopup,
     createUserWithEmailAndPassword,
-    updateProfile
+    updateProfile,
+    signOut
 }
