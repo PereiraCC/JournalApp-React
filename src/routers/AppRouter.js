@@ -10,8 +10,7 @@ import { onAuthStateChanged, getAuth } from '../firebase/firebase-config';
 
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
-import { loadNotes } from '../helpers/loadNotes';
-import { setNotes } from '../actions/notes';
+import { startLoadingNotes } from '../actions/notes';
 
 export const AppRouter = () => {
 
@@ -29,8 +28,7 @@ export const AppRouter = () => {
                 dispatch( login( user.uid, user.displayName ));
                 setIsLoggedIn( true );
 
-                const notes = await loadNotes( user.uid );
-                dispatch( setNotes( notes ) );
+                dispatch( startLoadingNotes( user.uid ) );
 
             } else {
                 setIsLoggedIn( false );
