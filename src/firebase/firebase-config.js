@@ -7,7 +7,9 @@ import { getFirestore,
          collection, 
          addDoc, 
          getDocs,
-         query
+         query,
+         doc,
+         updateDoc
 } from 'firebase/firestore';
 import { GoogleAuthProvider, 
          onAuthStateChanged, 
@@ -47,6 +49,8 @@ export {
     addDoc,
     getDocs,
     query,
+    doc,
+    updateDoc,
     getAuth,
     googleAuthProvider,
     onAuthStateChanged,
