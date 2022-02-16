@@ -9,7 +9,8 @@ import { getFirestore,
          getDocs,
          query,
          doc,
-         updateDoc
+         updateDoc,
+         deleteDoc
 } from 'firebase/firestore';
 import { GoogleAuthProvider, 
          onAuthStateChanged, 
@@ -51,6 +52,7 @@ export {
     query,
     doc,
     updateDoc,
+    deleteDoc,
     getAuth,
     googleAuthProvider,
     onAuthStateChanged,
