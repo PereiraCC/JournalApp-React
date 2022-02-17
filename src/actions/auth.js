@@ -9,6 +9,7 @@ import { googleAuthProvider,
     signOut
 } from '../firebase/firebase-config';
 import { types } from '../types/types';
+import { notesLogout } from './notes';
 import { finishLoading, startLoading } from './ui';
 
 export const startLoginEmailPassword = (email, password) => {
@@ -81,7 +82,8 @@ export const startLogout = ( ) => {
         const auth = getAuth();
         await signOut(auth);
 
-        dispatch( logout() )
+        dispatch( logout() );
+        dispatch( notesLogout() );
     }
 }
 
