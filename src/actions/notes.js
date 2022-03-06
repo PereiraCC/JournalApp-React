@@ -17,11 +17,18 @@ export const startNewNote = () => {
             body: '',
             date: new Date().getTime()
         };
+        
+        try {
+            
+            const doc = await addDoc(collection(db, `${uid}/journal/notes`), newNote);
+    
+            dispatch( activeNote( doc.id,  newNote ) );
+            dispatch( addNewNote( doc.id, newNote ) );
 
-        const doc = await addDoc(collection(db, `${uid}/journal/notes`), newNote);
+        } catch (error) {
+            console.log(error);
+        }
 
-        dispatch( activeNote( doc.id,  newNote ) );
-        dispatch( addNewNote( doc.id, newNote ) );
     } 
 };
 

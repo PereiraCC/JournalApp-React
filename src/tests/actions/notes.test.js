@@ -8,15 +8,32 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { db, doc, deleteDoc, getDoc} from "../../firebase/firebase-config";
-import { startLoadingNotes, startNewNote, startSaveNote } from '../../actions/notes';
+import { startLoadingNotes, startNewNote, startSaveNote, startUploading } from '../../actions/notes';
 import { types } from '../../types/types';
 
 const middlewares = [ thunk ];
 const mockStore = configureStore(middlewares);
 
+jest.mock('../../helpers/fileUpload', () => {
+    return {
+        fileUpload: () => {
+            return Promise.resolve(
+                "https://misfotos.com/photo.png"
+            );
+        },
+    };
+});
+
 const initialState = {
     auth: {
         uid: 'TESTING',
+    },
+    notes: {
+        active: {
+            id: 'GihsOU4F2ClPAvVIYifa',
+            title: 'Hello',
+            body: 'World'
+        }
     }
 }
 
@@ -103,6 +120,18 @@ describe('Notes actions tests', () => {
         const docSnap = await getDoc(docRef);
 
         expect( docSnap.data().title ).toBe( note.title );
+    });
+
+    test('should update entry url startUploading', async () => {
+
+        const file = [];
+        await store.dispatch( startUploading( file ) );
+
+        const docRef = doc( db, `TESTING/journal/notes/GihsOU4F2ClPAvVIYifa` );
+        const docSnap = await getDoc(docRef);
+
+        expect( docSnap.data().url ).toBe( 'https://misfotos.com/photo.png' );
+
     });
 
 });
